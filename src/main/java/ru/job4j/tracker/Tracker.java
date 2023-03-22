@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
-public class  Tracker {
+public class Tracker {
     private final Item[] items = new Item[100];
     private int ids = 1;
     private int size = 0;
@@ -13,7 +13,7 @@ public class  Tracker {
         return item;
     }
 
-    public Item[] findAll(){
+    public Item[] findAll() {
         Item[] result = new Item[items.length];
         int size = 0;
         for (Item item : items) {
@@ -26,7 +26,7 @@ public class  Tracker {
         return result;
     }
 
-    public Item[] findByName(String key){
+    public Item[] findByName(String key) {
         Item[] result = new Item[items.length];
         int size = 0;
         for (Item item : items) {
