@@ -14,7 +14,8 @@ public class Error {
         this.status = status;
         this.message = message;
     }
-    public void printInfo(){
+
+    public void printInfo() {
         System.out.println("Активная?: " + active);
         System.out.println("Код ошибки: " + status);
         System.out.println("Сообщение: " + message);
