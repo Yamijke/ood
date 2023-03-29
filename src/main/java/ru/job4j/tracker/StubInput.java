@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 public class StubInput implements Input {
     @Override
-    public String aksStr(String question) {
+    public String askStr(String question) {
         return null;
     }
 
