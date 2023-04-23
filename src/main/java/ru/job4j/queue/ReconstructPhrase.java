@@ -15,24 +15,23 @@ public class ReconstructPhrase {
 
     private String getEvenElements() {
         StringBuilder str = new StringBuilder();
-        int i = 0;
-        while (!evenElements.isEmpty()) {
+        int evenElementsSize = evenElements.size();
+        for (int i = 0; i < evenElementsSize; i++) {
             char currentChar = evenElements.poll();
             if (i % 2 == 0) {
                 str.append(currentChar);
             }
-            i++;
+            evenElements.addLast(currentChar);
         }
         return str.toString();
     }
 
     private String getDescendingElements() {
         StringBuilder str = new StringBuilder();
-        int i = 0;
-        while (!descendingElements.isEmpty()) {
+        int descendingElementsSize = descendingElements.size();
+        for (int i = 0; i < descendingElementsSize; i++) {
             char currentChar = descendingElements.pollLast();
             str.append(currentChar);
-            i++;
         }
         return str.toString();
     }
