@@ -19,9 +19,6 @@ public class ScheduleTask {
     }
 
     public Task getTask() {
-        if (!queue.isEmpty()) {
-            return queue.poll();
-        }
-        return null;
+        return queue.isEmpty() ? null : queue.poll();
     }
 }
