@@ -45,7 +45,7 @@ public class SqlTracker implements Store {
 
     @Override
     public Item add(Item item) {
-        try (PreparedStatement ps = cn.prepareStatement("INSERT INTO tasks (name, created) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement ps = cn.prepareStatement("INSERT INTO items (name, created) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             ps.execute();
@@ -65,9 +65,9 @@ public class SqlTracker implements Store {
     @Override
     public boolean replace(int id, Item item) {
         boolean rsl = false;
-        try (PreparedStatement ps = cn.prepareStatement("UPDATE tasks SET name = ?, created = ? WHERE id = ?")) {
+        try (PreparedStatement ps = cn.prepareStatement("UPDATE items SET name = ?, created = ? WHERE id = ?")) {
             ps.setString(1, item.getName());
-            ps.setString(2, String.valueOf(item.getCreated()));
+            ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             ps.setInt(3, id);
             int check = ps.executeUpdate();
             if (check > 0) {
@@ -82,7 +82,7 @@ public class SqlTracker implements Store {
     @Override
     public boolean delete(int id) {
         boolean rsl = false;
-        try (PreparedStatement ps = cn.prepareStatement("DELETE FROM tasks WHERE id = ?")) {
+        try (PreparedStatement ps = cn.prepareStatement("DELETE FROM items WHERE id = ?")) {
             ps.setInt(1, id);
             int check = ps.executeUpdate();
             if (check > 0) {
@@ -97,7 +97,7 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findAll() {
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement ps = cn.prepareStatement("SELECT id, name, TO_CHAR(created::timestamp, 'YYYY-MM-DD HH24:MI:SS') as formatted_created FROM tasks;")) {
+        try (PreparedStatement ps = cn.prepareStatement("SELECT id, name, TO_CHAR(created::timestamp, 'YYYY-MM-DD HH24:MI:SS') as formatted_created FROM items;")) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -115,7 +115,7 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement ps = cn.prepareStatement("SELECT id, name, TO_CHAR(created::timestamp, 'YYYY-MM-DD HH24:MI:SS') as formatted_created FROM tasks WHERE name = ?")) {
+        try (PreparedStatement ps = cn.prepareStatement("SELECT id, name, TO_CHAR(created::timestamp, 'YYYY-MM-DD HH24:MI:SS') as formatted_created FROM items WHERE name = ?")) {
             ps.setString(1, key);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -134,7 +134,7 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(int id) {
         Item item = null;
-        try (PreparedStatement ps = cn.prepareStatement("SELECT id, name, TO_CHAR(created::timestamp, 'YYYY-MM-DD HH24:MI:SS') as formatted_created FROM tasks WHERE id = ?")) {
+        try (PreparedStatement ps = cn.prepareStatement("SELECT id, name, TO_CHAR(created::timestamp, 'YYYY-MM-DD HH24:MI:SS') as formatted_created FROM items WHERE id = ?")) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
