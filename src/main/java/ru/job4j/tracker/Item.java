@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import javax.naming.Name;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -65,11 +64,11 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return Objects.equals(name, item.name);
+        return id == item.id && name.equals(item.name) && created.equals(item.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name, created);
     }
 }
