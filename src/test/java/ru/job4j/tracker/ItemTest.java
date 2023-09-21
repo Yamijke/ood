@@ -2,15 +2,10 @@ package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 class ItemTest {
-
-    private void assertItemEquals(Item expected, Item actual) {
-        assertThat(actual.getName()).isEqualTo(expected.getName());
-    }
-
     @Test
     public void whenNameAscendingSorting() {
         List<Item> items = new ArrayList<>();
@@ -22,10 +17,7 @@ class ItemTest {
         expected.add(new Item("Name1"));
         expected.add(new Item("Name2"));
         expected.add(new Item("Name3"));
-        assertThat(items.size()).isEqualTo(expected.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertItemEquals(expected.get(i), items.get(i));
-        }
+        assertEquals(expected, items);
     }
 
     @Test
@@ -39,9 +31,6 @@ class ItemTest {
         expected.add(new Item("Name3"));
         expected.add(new Item("Name2"));
         expected.add(new Item("Name1"));
-        assertThat(items.size()).isEqualTo(expected.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertItemEquals(expected.get(i), items.get(i));
-        }
+        assertEquals(expected, items);
     }
 }

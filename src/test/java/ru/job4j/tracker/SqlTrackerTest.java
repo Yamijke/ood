@@ -4,17 +4,14 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Properties;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class SqlTrackerTest {
@@ -31,6 +28,7 @@ public class SqlTrackerTest {
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
+
             );
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -52,20 +50,12 @@ public class SqlTrackerTest {
         }
     }
 
-    private void assertItemEquals(Item actual, Item expected) {
-        assertThat(actual.getId()).isEqualTo(expected.getId());
-        assertThat(actual.getName()).isEqualTo(expected.getName());
-        assertThat(actual.getCreated().truncatedTo(ChronoUnit.SECONDS))
-                .isEqualTo(expected.getCreated().truncatedTo(ChronoUnit.SECONDS));
-    }
-
     @Test
     public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
-        Item test = tracker.findById(item.getId());
-        assertItemEquals(item, test);
+        assertThat(tracker.findById(item.getId())).isEqualTo(item);
     }
 
     @Test
@@ -96,9 +86,7 @@ public class SqlTrackerTest {
         tracker.add(item);
         tracker.add(item2);
         List<Item> result = tracker.findAll();
-        assertThat(result.size()).isEqualTo(2);
-        assertItemEquals(result.get(0), item);
-        assertItemEquals(result.get(1), item2);
+        assertThat(result).contains(item, item2);
     }
 
     @Test
@@ -109,7 +97,6 @@ public class SqlTrackerTest {
         tracker.add(item);
         tracker.add(item2);
         tracker.delete(item2.getId());
-        Item test = tracker.findById(item.getId());
-        assertItemEquals(item, test);
+        assertThat(tracker.findById(item.getId())).isEqualTo(item);
     }
 }
