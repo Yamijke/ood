@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Properties;
 
@@ -31,7 +31,6 @@ public class SqlTrackerTest {
                     config.getProperty("url"),
                     config.getProperty("username"),
                     config.getProperty("password")
-
             );
         } catch (Exception e) {
             throw new IllegalStateException(e);
@@ -53,12 +52,20 @@ public class SqlTrackerTest {
         }
     }
 
+    private void assertItemEquals(Item actual, Item expected) {
+        assertThat(actual.getId()).isEqualTo(expected.getId());
+        assertThat(actual.getName()).isEqualTo(expected.getName());
+        assertThat(actual.getCreated().truncatedTo(ChronoUnit.SECONDS))
+                .isEqualTo(expected.getCreated().truncatedTo(ChronoUnit.SECONDS));
+    }
+
     @Test
     public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
-        assertThat(tracker.findById(item.getId())).isEqualTo(item);
+        Item test = tracker.findById(item.getId());
+        assertItemEquals(item, test);
     }
 
     @Test
@@ -88,10 +95,21 @@ public class SqlTrackerTest {
         Item item2 = new Item("item2");
         tracker.add(item);
         tracker.add(item2);
-        List<Item> rsl = new ArrayList<>();
-        rsl.add(new Item("item"));
-        rsl.add(new Item("item2"));
         List<Item> result = tracker.findAll();
-        assertThat(result).contains(item, item2);
+        assertThat(result.size()).isEqualTo(2);
+        assertItemEquals(result.get(0), item);
+        assertItemEquals(result.get(1), item2);
+    }
+
+    @Test
+    public void whenDeleteOneItemOthersItemsSavesInTheBase() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        Item item2 = new Item("item2");
+        tracker.add(item);
+        tracker.add(item2);
+        tracker.delete(item2.getId());
+        Item test = tracker.findById(item.getId());
+        assertItemEquals(item, test);
     }
 }
