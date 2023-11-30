@@ -3,7 +3,7 @@ package tdd;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class Ticket3D implements Ticket{
+public class Ticket3D implements Ticket {
     private Account account;
     private int row;
     private int column;
@@ -50,18 +50,22 @@ public class Ticket3D implements Ticket{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Ticket3D ticket3D = (Ticket3D) o;
-        return row == ticket3D.row &&
-                column == ticket3D.column &&
-                Objects.equals(account, ticket3D.account) &&
-                sameDay(this.date, ticket3D.date);
+        return row == ticket3D.row
+                && column == ticket3D.column
+                && Objects.equals(account, ticket3D.account)
+                && sameDay(this.date, ticket3D.date);
     }
 
     private boolean sameDay(Calendar c1, Calendar c2) {
-        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
-                c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR);
+        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR)
+                && c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR);
     }
 
     @Override
