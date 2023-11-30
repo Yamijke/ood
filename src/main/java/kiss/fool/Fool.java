@@ -29,7 +29,7 @@ public class Fool {
             String userAnswer = io.nextLine();
             String expectedAnswer = ret(startAt);
             if (!userAnswer.equalsIgnoreCase(expectedAnswer)) {
-                System.out.println("Ошибка. Начинай снова.");
+                System.out.println("Ошибка.Начинай снова.");
                 startAt = 1;
             } else {
                 startAt++;
