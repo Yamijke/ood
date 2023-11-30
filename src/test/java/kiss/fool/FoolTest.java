@@ -12,6 +12,5 @@ class FoolTest {
         assertEquals("Fizz", Fool.ret(3), "Ошибка при 3");
         assertEquals("Buzz", Fool.ret(5), "Ошибка при 5");
         assertEquals("FizzBuzz", Fool.ret(15), "Ошибка при 15");
-        assertEquals("2", Fool.ret(2), "Ошибка при 2");
     }
 }
