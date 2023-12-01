@@ -1,4 +1,4 @@
-package SRP;
+package srp;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -1,4 +1,4 @@
-package SRP;
+package srp;
 
 public class SrpExample3 {
     private String name;
