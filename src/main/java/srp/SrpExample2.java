@@ -13,7 +13,6 @@ public class SrpExample2 {
         orders.remove(order);
     }
 
-    //Нарушение принципа SRP, класс должен отвечать за управлением заказами, но занимается и печатью
     public void printOrder(SrpExample2 order) {
         System.out.println("Order Summary: ");
     }

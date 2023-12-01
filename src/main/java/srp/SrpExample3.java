@@ -25,7 +25,6 @@ public class SrpExample3 {
         this.email = email;
     }
 
-    //Нарушение принципа SRP, класс хранит информацию о сотруднике и одновременно занимается её проверкой
     public boolean isValid() {
         return email.contains("@");
     }

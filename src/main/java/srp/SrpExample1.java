@@ -21,7 +21,6 @@ public class SrpExample1 {
         return surname;
     }
 
-    //Нарушение принципа SRP, изначально метод должен хранить данные, но он занимается записью
     public void saveToFile(String filename) {
         try {
             File file = new File(filename);
