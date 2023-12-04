@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class HRReport implements Report{
+public class HRReport implements Report {
     private HashMap<String, Double> salary = new HashMap<>();
     private Store store;
 
