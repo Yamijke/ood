@@ -2,22 +2,22 @@ package lsp;
 
 public class LspExample3 {
 
-    public static class animal {
+    public static class Animal {
 
-        public void eat() {
+        public void Eat() {
         }
 
-        public void move() {
+        public void Move() {
         }
 
-        public void fly() {
+        public void Fly() {
         }
     }
 
-    public static class bird extends animal {
+    public static class Bird extends Animal {
     }
 
-    public static class cat extends animal {
+    public static class Cat extends Animal {
     }
 }
 

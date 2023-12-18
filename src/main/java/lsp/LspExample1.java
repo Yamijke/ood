@@ -1,20 +1,20 @@
 package lsp;
 
 public class LspExample1 {
-    public static class person {
+    public static class Person {
         public void breath() {
         }
 
-        public void think(){
+        public void Think(){
         }
 
-        public void writeCode(){
+        public void WriteCode(){
         }
     }
 
-    public static class dev extends person {
+    public static class Dev extends Person {
     }
 
-    public static class doctor extends person {
+    public static class Doctor extends Person {
     }
 }
