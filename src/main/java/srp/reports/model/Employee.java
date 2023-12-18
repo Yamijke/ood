@@ -1,5 +1,6 @@
 package srp.reports.model;
 
+import javax.xml.bind.annotation.XmlElement;
 import java.util.Calendar;
 import java.util.Objects;
 
