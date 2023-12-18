@@ -4,14 +4,16 @@ public class LspExample2 {
 
     public static class Database {
 
-        public void Connect() {
-        }
-        public void Read() {
-        }
-        public void Write() {
+        public void connect() {
         }
 
-        public void JoinTables() {
+        public void read() {
+        }
+
+        public void write() {
+        }
+
+        public void joinTables() {
         }
     }
 

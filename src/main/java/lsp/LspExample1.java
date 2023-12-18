@@ -1,14 +1,16 @@
 package lsp;
 
 public class LspExample1 {
+
     public static class Person {
+
         public void breath() {
         }
 
-        public void Think(){
+        public void think() {
         }
 
-        public void WriteCode(){
+        public void writeCode() {
         }
     }
 

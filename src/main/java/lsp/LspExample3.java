@@ -4,13 +4,13 @@ public class LspExample3 {
 
     public static class Animal {
 
-        public void Eat() {
+        public void eat() {
         }
 
-        public void Move() {
+        public void move() {
         }
 
-        public void Fly() {
+        public void fly() {
         }
     }
 
