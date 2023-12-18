@@ -15,18 +15,22 @@ public class EmployeeWrapper {
         this.hiredFormatted = dateTimeParser.parse(employee.getHired());
         this.firedFormatted = dateTimeParser.parse(employee.getFired());
     }
+
     @XmlElement
     public String getName() {
         return employee.getName();
     }
+
     @XmlElement
     public double getSalary() {
         return employee.getSalary();
     }
+
     @XmlElement(name = "hired")
     public String getHiredFormatted() {
         return hiredFormatted;
     }
+
     @XmlElement(name = "fired")
     public String getFiredFormatted() {
         return firedFormatted;
