@@ -15,5 +15,5 @@ public interface Store {
 
     List<Food> findAll();
 
-    boolean acceptFood (String status);
+    boolean acceptFood(String status);
 }

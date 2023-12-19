@@ -17,7 +17,7 @@ public class Shop extends AbstractStore {
     }
 
     @Override
-    public boolean acceptFood (String status) {
+    public boolean acceptFood(String status) {
         boolean rsl;
         rsl = "Middle".equals(status);
         return rsl;

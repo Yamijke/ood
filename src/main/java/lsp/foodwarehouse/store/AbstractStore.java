@@ -31,7 +31,7 @@ public abstract class AbstractStore implements Store {
     }
 
     @Override
-    public boolean acceptFood (String status) {
+    public boolean acceptFood(String status) {
         return true;
     }
 }
