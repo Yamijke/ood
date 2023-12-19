@@ -1,30 +1,24 @@
 package lsp.foodwarehouse;
 
-import lsp.foodwarehouse.store.AbstractStore;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import lsp.foodwarehouse.store.ExpirationStatusChecker;
+import lsp.foodwarehouse.store.Store;
+import java.util.List;
 
 public class ControlQuality {
-    private AbstractStore warehouse;
-    private AbstractStore shop;
-    private AbstractStore trash;
+    ExpirationStatusChecker statusChecker = new ExpirationStatusChecker();
+    private List<Store> storeList;
 
-    public ControlQuality(AbstractStore warehouse, AbstractStore shop, AbstractStore trash) {
-        this.warehouse = warehouse;
-        this.shop = shop;
-        this.trash = trash;
+    public ControlQuality(List<Store> storeList) {
+        this.storeList = storeList;
     }
 
     public void chosePlace(Food food) {
-        long totalLife = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        long remainTime = ChronoUnit.DAYS.between(LocalDate.now(), food.getExpiryDate());
-        if (remainTime > totalLife * 0.75) {
-            warehouse.add(food);
-        } else if (remainTime >= 0 && remainTime <= totalLife * 0.75) {
-            shop.add(food);
-        } else {
-            trash.add(food);
+        String status = statusChecker.checkStatusOfExpirationDate(food);
+        for (Store store: storeList) {
+            if (store.acceptFood(status)) {
+                store.add(food);
+                break;
+            }
         }
     }
 }

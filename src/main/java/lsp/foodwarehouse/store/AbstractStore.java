@@ -1,6 +1,5 @@
 package lsp.foodwarehouse.store;
 
-import lsp.foodwarehouse.ControlQuality;
 import lsp.foodwarehouse.Food;
 
 import java.util.ArrayList;
@@ -29,5 +28,10 @@ public abstract class AbstractStore implements Store {
     @Override
     public List<Food> findAll() {
         return new ArrayList<>(foods);
+    }
+
+    @Override
+    public boolean acceptFood (String status) {
+        return true;
     }
 }

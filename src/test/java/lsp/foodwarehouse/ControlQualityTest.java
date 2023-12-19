@@ -1,13 +1,12 @@
 package lsp.foodwarehouse;
 
-import lsp.foodwarehouse.store.AbstractStore;
-import lsp.foodwarehouse.store.Shop;
-import lsp.foodwarehouse.store.Trash;
-import lsp.foodwarehouse.store.Warehouse;
+import lsp.foodwarehouse.store.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,13 +19,17 @@ class ControlQualityTest {
     private Food cheese;
     private Food cheese2;
     private Food fish;
+    List<Store> list = new ArrayList<>();
 
     @BeforeEach
     public void setUp() {
         warehouse = new Warehouse();
         shop = new Shop();
         trash = new Trash();
-        controlQuality = new ControlQuality(warehouse, shop, trash);
+        list.add(warehouse);
+        list.add(shop);
+        list.add(trash);
+        controlQuality = new ControlQuality(list);
         cheese = new Food("Cheese",
                 LocalDate.of(2023, 12, 1),
                 LocalDate.of(2024, 12, 21),

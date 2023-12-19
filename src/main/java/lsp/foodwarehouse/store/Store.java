@@ -14,4 +14,6 @@ public interface Store {
     List<Food> findBy(Predicate<Food> filter);
 
     List<Food> findAll();
+
+    boolean acceptFood (String status);
 }

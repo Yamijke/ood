@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,13 +19,17 @@ class WarehouseTest {
     private Food cheese;
     private Food cheese2;
     private Food fish;
+    List<Store> list = new ArrayList<>();
 
     @BeforeEach
     public void setUp() {
         warehouse = new Warehouse();
         shop = new Shop();
         trash = new Trash();
-        controlQuality = new ControlQuality(warehouse, shop, trash);
+        list.add(warehouse);
+        list.add(shop);
+        list.add(trash);
+        controlQuality = new ControlQuality(list);
         cheese = new Food("Cheese",
                 LocalDate.of(2023, 12, 15),
                 LocalDate.of(2024, 2, 15),
