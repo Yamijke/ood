@@ -9,8 +9,4 @@ public interface Parking {
     void remove(Car car);
 
     List<Car> findAll();
-
-    boolean acceptParkingPassengerCar(String status);
-
-    boolean acceptParkingTruckCar(String status);
 }
