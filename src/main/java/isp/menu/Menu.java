@@ -22,12 +22,12 @@ public interface Menu extends Iterable<Menu.MenuItemInfo> {
 
         @Override
         public String toString() {
-            return "MenuItemInfo{" +
-                    "name='" + name + '\'' +
-                    ", children=" + children +
-                    ", actionDelegate=" + actionDelegate +
-                    ", number='" + number + '\'' +
-                    '}';
+            return "MenuItemInfo{"
+                    + "name='" + name + '\''
+                    + ", children=" + children
+                    + ", actionDelegate=" + actionDelegate
+                    + ", number='" + number + '\''
+                    + '}';
         }
 
         public MenuItemInfo(MenuItem menuItem, String number) {
