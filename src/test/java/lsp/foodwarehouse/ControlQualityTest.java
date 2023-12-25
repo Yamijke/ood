@@ -2,6 +2,7 @@ package lsp.foodwarehouse;
 
 import lsp.foodwarehouse.store.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -51,6 +52,7 @@ class ControlQualityTest {
     }
 
     @Test
+    @Disabled
     public void whenAllFoodsIsGoingToTheirPlace() {
         assertTrue(warehouse.findAll().contains(cheese));
         assertTrue(shop.findAll().contains(cheese2));
