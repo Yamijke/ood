@@ -38,7 +38,7 @@ class ControlQualityTest {
                 20);
         cheese2 = new Food("Cheese2",
                 LocalDate.of(2023, 12, 1),
-                LocalDate.of(2023, 12, 21),
+                LocalDate.of(2023, 12, 30),
                 100,
                 20);
         fish = new Food("Fish",
@@ -52,7 +52,6 @@ class ControlQualityTest {
     }
 
     @Test
-    @Disabled
     public void whenAllFoodsIsGoingToTheirPlace() {
         assertTrue(warehouse.findAll().contains(cheese));
         assertTrue(shop.findAll().contains(cheese2));

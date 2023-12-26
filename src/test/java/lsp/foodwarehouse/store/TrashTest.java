@@ -43,7 +43,7 @@ class TrashTest {
                 20);
         fish = new Food("Fish",
                 LocalDate.of(2023, 11, 30),
-                LocalDate.of(2023, 12, 23),
+                LocalDate.of(2023, 12, 30),
                 100,
                 50);
         controlQuality.chosePlace(cheese);
@@ -52,7 +52,6 @@ class TrashTest {
     }
 
     @Test
-    @Disabled
     public void whenCheese2IsGoingToTrash() {
         assertFalse(trash.findAll().contains(cheese));
         assertTrue(trash.findAll().contains(cheese2));
