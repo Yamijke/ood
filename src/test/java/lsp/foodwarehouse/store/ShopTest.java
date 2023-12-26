@@ -3,7 +3,6 @@ package lsp.foodwarehouse.store;
 import lsp.foodwarehouse.ControlQuality;
 import lsp.foodwarehouse.Food;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -31,7 +30,8 @@ class ShopTest {
         list.add(warehouse);
         list.add(shop);
         list.add(trash);
-        controlQuality = new ControlQuality(list);
+        ExpirationStrategy expirationStrategy = new ExpirationStrategy(warehouse, shop, trash);
+        controlQuality = new ControlQuality(expirationStrategy, list);
         cheese = new Food("Cheese",
                 LocalDate.of(2023, 12, 1),
                 LocalDate.of(2024, 1, 15),

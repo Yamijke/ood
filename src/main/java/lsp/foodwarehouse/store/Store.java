@@ -11,6 +11,8 @@ public interface Store {
 
     void remove(Food food);
 
+    void removeAll();
+
     List<Food> findBy(Predicate<Food> filter);
 
     List<Food> findAll();

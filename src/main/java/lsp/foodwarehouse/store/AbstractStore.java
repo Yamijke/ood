@@ -21,6 +21,11 @@ public abstract class AbstractStore implements Store {
     }
 
     @Override
+    public void removeAll() {
+        foods.clear();
+    }
+
+    @Override
     public List<Food> findBy(Predicate<Food> filter) {
         return foods.stream().filter(filter).collect(Collectors.toList());
     }

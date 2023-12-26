@@ -15,11 +15,4 @@ public class Shop extends AbstractStore {
         }
         super.add(food);
     }
-
-    @Override
-    public boolean acceptFood(String status) {
-        boolean rsl;
-        rsl = "Middle".equals(status);
-        return rsl;
-    }
 }
